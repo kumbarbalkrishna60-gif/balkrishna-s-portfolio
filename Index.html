@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Balkrishna Erappa Kumbar -- Portfolio</title>
+
+  <!-- Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --royal:#1f4bb0;
+      --gold:#d4a017;
+      --soft-grey:#f4f5f7;
+      --card:#ffffff;
+      --dark:#1a1a1a;
+      --muted:#555;
+      --radius:12px;
+      --shadow:0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:"Poppins",sans-serif;scroll-behavior:smooth}
+    body{background:var(--soft-grey);color:var(--dark);-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;line-height:1.5}
+
+    /* Header (updated to soft golden fade) */
+    header{
+      position:fixed;top:0;left:0;right:0;height:72px;display:flex;align-items:center;justify-content:space-between;padding:12px 24px;
+      background:linear-gradient(90deg, rgba(212,160,23,0.14), rgba(255,255,255,0.92));
+      backdrop-filter:blur(8px);box-shadow:0 6px 18px rgba(0,0,0,0.04);z-index:999;
+      animation:fadeGold 10s ease-in-out infinite alternate;
+    }
+    @keyframes fadeGold {
+      0% { background:linear-gradient(90deg, rgba(212,160,23,0.18), rgba(255,255,255,0.92)); }
+      50% { background:linear-gradient(90deg, rgba(255,230,150,0.30), rgba(255,255,255,0.88)); }
+      100% { background:linear-gradient(90deg, rgba(212,160,23,0.18), rgba(255,255,255,0.92)); }
+    }
+
+    .brand{display:flex;gap:10px;align-items:center}
+    .brand .bek{background:linear-gradient(90deg,var(--royal),var(--gold));-webkit-background-clip:text;color:transparent;font-weight:800;font-size:18px}
+    nav.desktop{display:flex;gap:18px;align-items:center}
+    nav.desktop a{color:var(--muted);text-decoration:none;font-weight:600;padding:8px 10px;border-radius:8px}
+    nav.desktop a:hover{color:var(--royal);transform:translateY(-2px)}
+
+    /* hamburger */
+    .hamburger{display:none;width:44px;height:44px;border-radius:10px;align-items:center;justify-content:center;background:transparent;border:none;cursor:pointer}
+    .hamburger .bar{display:block;width:22px;height:2px;background:var(--dark);margin:4px 0;border-radius:2px;transition:all .25s}
+    .hamburger.open .bar:nth-child(1){transform:translateY(6px) rotate(45deg)}
+    .hamburger.open .bar:nth-child(2){opacity:0}
+    .hamburger.open .bar:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+    .mobile-nav{display:none;position:fixed;top:72px;right:16px;width:220px;background:var(--card);border-radius:12px;padding:12px;box-shadow:var(--shadow)}
+    .mobile-nav a{display:block;padding:8px;border-radius:8px;color:var(--dark);text-decoration:none;font-weight:600}
+    .mobile-nav a + a{margin-top:6px}
+
+    /* container */
+    .container{max-width:1100px;margin:0 auto;padding:92px 20px 48px}
+
+    /* Hero (updated to soft gold fade with subtle animation) */
+    .hero{
+      display:flex;flex-direction:column;align-items:center;text-align:center;padding:56px 22px;border-radius:14px;
+      background:linear-gradient(180deg, rgba(255,248,230,0.85), rgba(255,255,255,0.8));
+      position:relative;overflow:hidden;margin-bottom:28px;
+      animation:goldGlow 12s ease-in-out infinite alternate;
+    }
+    @keyframes goldGlow {
+      0% { background:linear-gradient(180deg, rgba(255,248,230,0.85), rgba(255,255,255,0.8)); }
+      50% { background:linear-gradient(180deg, rgba(255,236,180,0.88), rgba(255,255,255,0.85)); }
+      100% { background:linear-gradient(180deg, rgba(255,248,230,0.85), rgba(255,255,255,0.8)); }
+    }
+
+    .hero::before{content:"";position:absolute;inset:0;z-index:0;background:linear-gradient(120deg, rgba(31,75,176,0.06), rgba(212,160,23,0.04), rgba(31,75,176,0.06));animation:heroShift 12s linear infinite;mix-blend-mode:screen;pointer-events:none}
+    @keyframes heroShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+    .profile{width:160px;height:160px;border-radius:50%;border:6px solid var(--royal);overflow:hidden;background:#fff;box-shadow:var(--shadow);z-index:1}
+    .profile img{width:100%;height:100%;object-fit:cover;display:block}
+    .hero h1{font-size:26px;margin:12px 0 6px;font-weight:700;z-index:1}
+    .hero p{z-index:1;color:var(--muted);margin:0 0 12px}
+    .hero .actions{display:flex;gap:12px;justify-content:center;z-index:1}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:10px;border:2px solid transparent;font-weight:600;text-decoration:none;cursor:pointer;box-shadow:var(--shadow);transition:transform .18s ease}
+    .btn-primary{background:var(--royal);color:#fff}
+    .btn-secondary{background:transparent;color:var(--royal);border-color:var(--royal)}
+    .btn:hover{transform:translateY(-4px)}
+
+    /* sections */
+    section{margin:36px 0;padding:8px 0}
+    .section-title{display:flex;align-items:center;gap:12px;margin-bottom:18px;justify-content:center}
+    .section-title h2{margin:0;font-size:20px;color:var(--royal);font-weight:700}
+    .lead{color:var(--muted);max-width:900px;margin:0 auto;text-align:center}
+
+    /* grid & cards */
+    .grid{display:grid;gap:18px}
+    .grid.cols-3{grid-template-columns:repeat(1,1fr)}
+    .grid.cols-4{grid-template-columns:repeat(1,1fr)}
+    @media(min-width:720px){
+      .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+      .grid.cols-4{grid-template-columns:repeat(4,1fr)}
+    }
+
+    .card{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);border:1px solid rgba(31,75,176,0.03);transition:transform .22s,box-shadow .22s}
+    .card:hover{transform:translateY(-8px);box-shadow:0 18px 30px rgba(31,75,176,0.08)}
+    .exp-card{display:flex;flex-direction:column;align-items:flex-start;gap:8px}
+    .exp-card img{width:64px;height:64px;object-fit:contain;border-radius:8px;background:#fff;padding:6px;border:2px solid rgba(31,75,176,0.15)}
+    .exp-meta{flex:1}
+    .role{font-weight:700}
+    .meta-small{color:var(--muted);font-weight:600;font-size:13px;margin-top:6px}
+    .bullets{margin:8px 0 0;padding-left:18px;color:var(--muted)}
+
+    /* Skills */
+    .skills-grid{display:grid;gap:18px}
+    @media(min-width:720px){.skills-grid{grid-template-columns:repeat(2,1fr)}}
+    .skills-box{padding:16px;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.03)}
+    .skills-box h4{color:var(--royal);margin-bottom:8px}
+    .skills-box ul{padding-left:18px;color:var(--muted);line-height:1.8}
+
+    /* Certifications */
+    .cert-grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+    .cert-card{background:var(--card);padding:14px;border-radius:12px;box-shadow:var(--shadow);display:flex;gap:12px;align-items:center;border:1px solid rgba(0,0,0,0.03)}
+    .cert-card img{width:64px;height:64px;object-fit:cover;border-radius:8px;border:2px solid rgba(31,75,176,0.08)}
+    .cert-meta{flex:1;text-align:left}
+    .cert-meta h4{margin:0;color:var(--royal)}
+    .cert-meta p{margin:6px 0;color:var(--muted);font-size:13px}
+    .cert-action a{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:10px;background:var(--royal);color:#fff;text-decoration:none;font-weight:600}
+
+    /* Languages */
+    .languages-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+    .lang-card{padding:12px;border-radius:10px;background:var(--card);box-shadow:var(--shadow);text-align:center;border:1px solid rgba(0,0,0,0.03)}
+    .lang-card h4{margin-bottom:6px;color:var(--royal)}
+
+    /* Contact */
+    .contact-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+    .contact-card{display:flex;align-items:center;gap:12px;padding:14px;border-radius:12px;background:var(--card);box-shadow:var(--shadow);text-decoration:none;color:var(--dark);border:1px solid rgba(0,0,0,0.04);min-height:110px}
+    .contact-card svg{width:36px;height:36px;flex-shrink:0;border-radius:8px;padding:6px;background:linear-gradient(180deg,rgba(31,75,176,0.06),rgba(212,160,23,0.04));border:2px solid rgba(31,75,176,0.06)}
+    .contact-text{display:flex;flex-direction:column}
+    .contact-text .title{font-weight:700}
+    .contact-text .sub{color:var(--muted);font-size:13px}
+
+    /* footer */
+    footer{padding:22px 0;text-align:center;color:var(--muted);margin-top:28px;background:linear-gradient(180deg, rgba(0,0,0,0.01), transparent);border-radius:8px}
+
+    /* reveal */
+    .reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease, transform .7s cubic-bezier(.2,.9,.2,1)}
+    .reveal.in-view{opacity:1;transform:none}
+
+    /* responsive tweaks */
+    @media(max-width:720px){
+      header{padding:10px 14px}
+      .container{padding-top:92px}
+      .hero{padding:40px 12px}
+      .profile{width:140px;height:140px}
+      nav.desktop{display:none}
+      .hamburger{display:flex}
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <div class="bek">BEK</div>
+      <div style="color:var(--muted);font-weight:600">Portfolio</div>
+    </div>
+
+    <nav class="desktop" aria-label="Main navigation">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#languages">Languages</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <div id="mobileNav" class="mobile-nav" aria-hidden="true">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#languages">Languages</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- HERO -->
+    <section id="home" class="hero">
+      <div class="profile" role="img" aria-label="Profile image">
+        <img src="assets/profile.jpg" alt="Balkrishna Erappa Kumbar -- Profile">
+      </div>
+
+      <h1>Balkrishna Erappa Kumbar</h1>
+      <p>Content Developer | Instructional Designer | Learning Experience Specialist</p>
+
+      <div class="actions">
+        <a class="btn btn-primary" href="assets/Balkrishna_Kumbar_Resume.pdf" target="_blank" rel="noopener" download>Download Resume</a>
+        <a class="btn btn-secondary" href="#contact">Contact & Links</a>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="reveal">
+      <div class="section-title"><h2>About</h2></div>
+      <p class="lead">I am a Content Developer and Instructional Designer with 4+ years of experience in designing engaging learning modules and eLearning materials. Skilled in Articulate Storyline 360, Camtasia, and DaVinci Resolve, creating innovative, multilingual, and learner-centered experiences.</p>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="reveal">
+      <div class="section-title"><h2>Experience</h2></div>
+
+      <div class="grid cols-3">
+        <article class="card exp-card">
+          <img src="assets/logo-novo.png" alt="NOVO logo">
+          <div class="exp-meta">
+            <div class="role">NOVO Management Consulting -- Content Developer</div>
+            <div class="meta-small">Jan 2023 – Present | Delhi</div>
+            <ul class="bullets">
+              <li>Developed eLearning modules using Storyline 360 & Camtasia</li>
+              <li>Used AI-based workflows for storyboarding & faster delivery</li>
+              <li>Created multilingual courses for corporate clients</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card exp-card">
+          <img src="assets/logo-sai.png" alt="Sai logo">
+          <div class="exp-meta">
+            <div class="role">Sai Marketing -- Sales & Trainer</div>
+            <div class="meta-small">May 2022 – Nov 2022 | Margao Goa</div>
+            <ul class="bullets">
+              <li>Trained clients and improved EV product communication</li>
+              <li>Developed dealership training and demo materials</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="card exp-card">
+          <img src="assets/logo-kabira.png" alt="Kabira logo">
+          <div class="exp-meta">
+            <div class="role">Kabira Mobility -- Trainee Engineer</div>
+            <div class="meta-small">Aug 2021 – Mar 2022 | Verna Goa</div>
+            <ul class="bullets">
+              <li>Prepared technical manuals and service documentation</li>
+              <li>Performed diagnostics and product testing for EV systems</li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects" class="reveal">
+      <div class="section-title"><h2>Projects</h2></div>
+
+      <div class="grid cols-4">
+        <article class="card">
+          <div style="font-weight:700;margin-bottom:6px">Interactive Product Launch Module</div>
+          <div class="lead">Created a product launch course with branching scenarios and quizzes in Storyline 360, increasing engagement by 40%.</div>
+        </article>
+
+        <article class="card">
+          <div style="font-weight:700;margin-bottom:6px">Video-based Training Series</div>
+          <div class="lead">Produced a 5-part Camtasia series with AI-assisted scripts, subtitles, and localized narration.</div>
+        </article>
+
+        <article class="card">
+          <div style="font-weight:700;margin-bottom:6px">Multilingual Localization</div>
+          <div class="lead">Managed translations into 5 languages ensuring consistent learning quality across markets.</div>
+        </article>
+
+        <article class="card">
+          <div style="font-weight:700;margin-bottom:6px">Assessment Toolkit</div>
+          <div class="lead">Built LMS-ready assessment templates and analytics dashboards for performance tracking.</div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="reveal">
+      <div class="section-title"><h2>Skills</h2></div>
+
+      <div class="skills-grid">
+        <div class="skills-box">
+          <div class="skills-col">
+            <h4>Tools</h4>
+            <ul>
+              <li>Articulate Storyline 360</li>
+              <li>Camtasia</li>
+              <li>DaVinci Resolve</li>
+              <li>MS Office 360</li>
+              <li>Adobe Illustrator</li>
+            </ul>
+          </div>
+
+          <div class="skills-col">
+            <h4>Methods</h4>
+            <ul>
+              <li>ADDIE Model & Storyboarding</li>
+              <li>Microlearning Design</li>
+              <li>Localization Workflows</li>
+            </ul>
+          </div>
+
+          <div class="skills-col">
+            <h4>Soft Skills</h4>
+            <ul>
+              <li>Client Communication</li>
+              <li>Creative Problem Solving</li>
+              <li>Instructional Writing</li>
+            </ul>
+          </div>
+
+          <div class="skills-col">
+            <h4>AI Tools</h4>
+            <ul>
+              <li>ChatGPT</li>
+              <li>Gemini / Bard</li>
+              <li>Microsoft Copilot</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS -->
+    <section id="certifications" class="reveal">
+      <div class="section-title"><h2>Certifications</h2></div>
+
+      <div class="cert-grid">
+        <!-- Certification 1 -->
+        <div class="cert-card">
+          <img src="assets/Camtasia studio software.jpg" alt="Camtasia Studio Software">
+          <div class="cert-meta">
+            <h4>Camtasia Studio Software</h4>
+            <p>AG WORKSHOP -- 2025 </p>
+          </div>
+          <div class="cert-action">
+            <a href="assets/Camtasia studio software.pdf" download aria-label="Download Instructional Design certificate">
+              <!-- download icon -->
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v10" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 11l4 4 4-4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Download
+            </a>
+          </div>
+        </div>
+
+        <!-- Certification 2 -->
+        <div class="cert-card">
+          <img src="assets/cert-storyline.png" alt="Storyline certificate">
+          <div class="cert-meta">
+            <h4>Articulate Storyline 360 -- Advanced Skills</h4>
+            <p>LinkedIn Learning -- 2024</p>
+          </div>
+          <div class="cert-action">
+            <a href="assets/cert2.pdf" download aria-label="Download Storyline certificate">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v10" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 11l4 4 4-4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Download
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- LANGUAGES -->
+    <section id="languages" class="reveal">
+      <div class="section-title"><h2>Languages</h2></div>
+
+      <div class="languages-grid">
+        <div class="lang-card"><h4>English</h4><p>Reading | Writing | Speaking</p></div>
+        <div class="lang-card"><h4>Hindi</h4><p>Reading | Writing | Speaking</p></div>
+        <div class="lang-card"><h4>Marathi</h4><p>Reading | Writing | Speaking</p></div>
+        <div class="lang-card"><h4>Konkani</h4><p>Reading | Writing | Speaking</p></div>
+        <div class="lang-card"><h4>Kannada</h4><p>Speaking Only</p></div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="reveal">
+      <div class="section-title"><h2>Contact & Links</h2></div>
+
+      <div class="contact-grid">
+        <a class="contact-card" href="mailto:balkrishnaekumbar@gmail.com">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.76 0 3-1.24 3-2.99V5.99C22 4.24 20.76 3 19 3zM7.06 17H4.12V9h2.94v8zM5.59 7.7c-.94 0-1.69-.76-1.69-1.7 0-.94.75-1.7 1.69-1.7s1.69.76 1.69 1.7-.75 1.7-1.69 1.7zM20 17h-2.94v-3.99c0-1.04-.02-2.37-1.44-2.37-1.44 0-1.66 1.13-1.66 2.3V17H10.5V9h2.82v1.09c.39-.73 1.35-1.49 2.77-1.49 2.96 0 3.4 1.95 3.4 4.48V17z"/></svg>
+          <div class="contact-text"><span class="title">Email</span><span class="sub">balkrishnaekumbar@gmail.com</span></div>
+        </a>
+
+        <a class="contact-card" href="tel:+917972714502">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24c1.27.41 2.63.63 4.07.63.55 0 1 .45 1 1v3.52a1 1 0 01-1 1A16.92 16.92 0 013 5a1 1 0 011-1h3.52a1 1 0 011 1c0 1.43.22 2.79.63 4.07.12.35.03.74-.25 1.02l-2.21 2.2z"/></svg>
+          <div class="contact-text"><span class="title">Phone</span><span class="sub">+91 79727 14502</span></div>
+        </a>
+
+        <a class="contact-card" href="https://www.linkedin.com/in/balkrishnaekumbar" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3h-14C2.24 3 1 4.24 1 5.99v12.02C1 19.76 2.24 21 4 21h14c1.76 0 3-1.24 3-2.99V5.99C22 4.24 20.76 3 19 3zM7.06 17H4.12V9h2.94v8zM5.59 7.7c-.94 0-1.69-.76-1.69-1.7 0-.94.75-1.7 1.69-1.7s1.69.76 1.69 1.7-.75 1.7-1.69 1.7zM20 17h-2.94v-3.99c0-1.04-.02-2.37-1.44-2.37-1.44 0-1.66 1.13-1.66 2.3V17H10.5V9h2.82v1.09c.39-.73 1.35-1.49 2.77-1.49 2.96 0 3.4 1.95 3.4 4.48V17z"/></svg>
+          <div class="contact-text"><span class="title">LinkedIn</span><span class="sub">linkedin.com/in/balkrishnaekumbar</span></div>
+        </a>
+
+        <!-- Updated WhatsApp icon to black & white image (keeps layout & accessibility) -->
+        <a class="contact-card" href="https://wa.me/917972714502" target="_blank" rel="noopener">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M16 3C8.832 3 3 8.832 3 16a12.93 12.93 0 0 0 1.869 6.688L3 29l6.438-1.828A12.973 12.973 0 0 0 16 29c7.168 0 13-5.832 13-13S23.168 3 16 3zm0 23a10.95 10.95 0 0 1-5.875-1.688l-.418-.25-3.824 1.086 1.105-3.723-.27-.438A10.896 10.896 0 0 1 5 16C5 9.934 9.934 5 16 5s11 4.934 11 11-4.934 10-11 10zm5.379-7.629c-.297-.148-1.766-.871-2.039-.973-.273-.101-.473-.148-.668.148-.199.297-.766.973-.938 1.172-.172.203-.348.223-.645.074-.297-.148-1.254-.463-2.39-1.48-.883-.785-1.48-1.754-1.652-2.051-.172-.297-.018-.457.129-.605.133-.133.297-.348.445-.523.148-.176.199-.297.297-.496.098-.199.047-.371-.027-.523-.074-.148-.668-1.613-.914-2.203-.242-.582-.484-.5-.668-.508-.172-.008-.371-.01-.57-.01s-.523.074-.797.371c-.273.297-1.043 1.02-1.043 2.484s1.07 2.883 1.219 3.082c.148.199 2.105 3.223 5.102 4.52.715.309 1.27.492 1.703.629.715.227 1.363.195 1.879.117.574-.086 1.766-.723 2.016-1.422.25-.699.25-1.297.176-1.422-.074-.125-.27-.199-.566-.348z"/></svg>
+       <div class="contact-text"><span class="title">WhatsApp</span><span class="sub">https://wa.me/+917972714502</span></div>
+        </a>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="year"></span> Balkrishna Erappa Kumbar -- All rights reserved
+    </footer>
+  </main>
+
+  <script>
+    // Mobile menu toggle
+    const hamb = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    hamb.addEventListener('click', () => {
+      const open = hamb.classList.toggle('open');
+      hamb.setAttribute('aria-expanded', open);
+      mobileNav.style.display = open ? 'block' : 'none';
+      mobileNav.setAttribute('aria-hidden', !open);
+    });
+
+    // Reveal on scroll
+    const revealEls = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(e => {
+        if(e.isIntersecting){ e.target.classList.add('in-view'); obs.unobserve(e.target); }
+      });
+    }, {threshold: 0.12});
+    revealEls.forEach(el => io.observe(el));
+
+    // Adjust anchor scroll for fixed header
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', (ev) => {
+        const href = a.getAttribute('href');
+        if(!href || href === '#') return;
+        const el = document.querySelector(href);
+        if(el){
+          ev.preventDefault();
+          const offset = 84;
+          const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
+          window.scrollTo({top, behavior: 'smooth'});
+          // close mobile nav
+          if(mobileNav.style.display === 'block'){
+            hamb.classList.remove('open');
+            mobileNav.style.display = 'none';
+          }
+        }
+      });
+    });
+
+    // current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
